@@ -1,0 +1,61 @@
+Metric,Organization,Value,Date
+Revenue,Acme Corp,1250000,2025-01-31
+Revenue,Globex Inc,980000,2025-01-31
+Revenue,Wayne Ent,1560000,2025-01-31
+Revenue,Stark Ind,2100000,2025-01-31
+Revenue,OsCorp,875000,2025-01-31
+Profit Margin,Acme Corp,0.24,2025-01-31
+Profit Margin,Globex Inc,0.18,2025-01-31
+Profit Margin,Wayne Ent,0.32,2025-01-31
+Profit Margin,Stark Ind,0.28,2025-01-31
+Profit Margin,OsCorp,0.15,2025-01-31
+Customer Satisfaction,Acme Corp,4.2,2025-01-31
+Customer Satisfaction,Globex Inc,3.8,2025-01-31
+Customer Satisfaction,Wayne Ent,4.6,2025-01-31
+Customer Satisfaction,Stark Ind,4.1,2025-01-31
+Customer Satisfaction,OsCorp,3.5,2025-01-31
+Market Share,Acme Corp,0.15,2025-01-31
+Market Share,Globex Inc,0.12,2025-01-31
+Market Share,Wayne Ent,0.18,2025-01-31
+Market Share,Stark Ind,0.22,2025-01-31
+Market Share,OsCorp,0.09,2025-01-31
+Revenue,Acme Corp,1320000,2025-02-28
+Revenue,Globex Inc,1050000,2025-02-28
+Revenue,Wayne Ent,1680000,2025-02-28
+Revenue,Stark Ind,2250000,2025-02-28
+Revenue,OsCorp,940000,2025-02-28
+Profit Margin,Acme Corp,0.26,2025-02-28
+Profit Margin,Globex Inc,0.19,2025-02-28
+Profit Margin,Wayne Ent,0.34,2025-02-28
+Profit Margin,Stark Ind,0.29,2025-02-28
+Profit Margin,OsCorp,0.17,2025-02-28
+Customer Satisfaction,Acme Corp,4.3,2025-02-28
+Customer Satisfaction,Globex Inc,3.9,2025-02-28
+Customer Satisfaction,Wayne Ent,4.7,2025-02-28
+Customer Satisfaction,Stark Ind,4.2,2025-02-28
+Customer Satisfaction,OsCorp,3.7,2025-02-28
+Market Share,Acme Corp,0.16,2025-02-28
+Market Share,Globex Inc,0.13,2025-02-28
+Market Share,Wayne Ent,0.19,2025-02-28
+Market Share,Stark Ind,0.23,2025-02-28
+Market Share,OsCorp,0.10,2025-02-28
+Revenue,Acme Corp,1410000,2025-03-31
+Revenue,Globex Inc,1120000,2025-03-31
+Revenue,Wayne Ent,1790000,2025-03-31
+Revenue,Stark Ind,2400000,2025-03-31
+Revenue,OsCorp,1020000,2025-03-31
+Profit Margin,Acme Corp,0.27,2025-03-31
+Profit Margin,Globex Inc,0.21,2025-03-31
+Profit Margin,Wayne Ent,0.35,2025-03-31
+Profit Margin,Stark Ind,0.31,2025-03-31
+Profit Margin,OsCorp,0.18,2025-03-31
+Customer Satisfaction,Acme Corp,4.4,2025-03-31
+Customer Satisfaction,Globex Inc,4.0,2025-03-31
+Customer Satisfaction,Wayne Ent,4.8,2025-03-31
+Customer Satisfaction,Stark Ind,4.3,2025-03-31
+Customer Satisfaction,OsCorp,3.8,2025-03-31
+Market Share,Acme Corp,0.17,2025-03-31
+Market Share,Globex Inc,0.14,2025-03-31
+Market Share,Wayne Ent,0.20,2025-03-31
+Market Share,Stark Ind,0.24,2025-03-31
+Market Share,OsCorp,0.11,2025-03-31

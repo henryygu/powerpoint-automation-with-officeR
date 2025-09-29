@@ -1,133 +1,127 @@
-# PowerPoint Automation with officer Package
+# PowerPoint Automation with R
 
-Simple R tool for creating PowerPoint presentations with text, plots, and images.
+This project automates the creation of PowerPoint presentations using R and metadata files. It allows users to generate professional presentations from structured data without manually creating each slide.
 
-## Features
+## Overview
 
-- **Two positioning modes**: Use placeholders or precise coordinates
-- **Multiple plot types**: ggplot2 and mschart support
-- **Content types**: Text, images, and plots
+The system uses three main components:
+1. **Data File** (`data.csv`) - Contains the actual data to be visualized
+2. **Slide Metadata** (`slide_metadata.csv`) - Defines slide layouts and masters
+3. **Content Metadata** (`content_metadata.csv`) - Specifies what content goes on each slide and where
+
+## Files
+
+- `data.csv` - Sample organizational data with metrics, organizations, values, and dates
+- `slide_metadata.csv` - Defines slide layouts and masters
+- `content_metadata.csv` - Specifies content placement on each slide
+- `generate_presentation.R` - R script that creates the PowerPoint presentation
+
+## Requirements
+
+- R (version 3.5.0 or higher)
+- R packages:
+  - `officer`
+  - `dplyr`
+  - `ggplot2`
+  - `readr`
 
 ## Installation
 
+1. Install R from [CRAN](https://cran.r-project.org/)
+2. Install required packages:
 ```r
-install.packages(c("officer", "magrittr", "ggplot2"))
+install.packages(c("officer", "dplyr", "ggplot2", "readr"))
 ```
 
-## Basic Usage
+## Usage
 
+1. Modify the metadata files to define your presentation structure:
+   - Update `slide_metadata.csv` to specify slide layouts
+   - Update `content_metadata.csv` to define content placement
+   - Update `data.csv` with your own data
+
+2. Run the R script:
 ```r
-source("pptx_generator.R")
-library(officer)
-
-ppt <- read_pptx()
-p <- ggplot(mtcars, aes(mpg, wt)) + geom_point()
-
-ppt <- add_custom_slide(
-  ppt,
-  contents = list(
-    list(type = "text", value = "My Title", placeholder = "title"),
-    list(type = "plot", plot = p, placeholder = "body")
-  ),
-  layout = "Title and Content"
-)
-
-print(ppt, target = "presentation.pptx")
+source("generate_presentation.R")
 ```
 
-## Positioning Options
+3. The generated presentation will be saved as `generated_presentation.pptx`
 
-**Placeholder positioning** (recommended):
-```r
-list(type = "text", value = "Title", placeholder = "title")
+## Customization
+
+For more advanced usage, you can create your own custom graphs and reference them in the metadata:
+
+1. Create your graph objects in a separate R script (see `example.R` for examples)
+2. Modify the `create_sample_graphs` function in `generate_presentation.R` to include your custom graphs
+3. Reference your graph objects by name in the `metric` column of `content_metadata.csv`
+
+## Metadata File Structure
+
+### Slide Metadata (`slide_metadata.csv`)
+- `slide_number` - Unique identifier for each slide
+- `layout` - PowerPoint slide layout (e.g., "Title and Content", "Two Content")
+- `master` - Slide master theme (e.g., "Office Theme")
+
+### Content Metadata (`content_metadata.csv`)
+- `slide_number` - Reference to the slide
+- `position_type` - Either "coordinates" or "object_name"
+- `content_type` - Type of content ("text", "graph", or "table")
+- `object_name` - Placeholder name when using object positioning
+- `left`, `top`, `width`, `height` - Position coordinates (inches) when using coordinate positioning
+- `bg` - Background color
+- `metric` - Reference to data or text content
+
+## Customization
+
+### Adding New Slides
+1. Add new rows to `slide_metadata.csv` with the slide number, layout, and master
+2. Add corresponding content rows to `content_metadata.csv`
+
+### Changing Layouts
+Modify the `layout` column in `slide_metadata.csv` to use different PowerPoint layouts
+
+### Adding Content
+Add new rows to `content_metadata.csv` specifying:
+- Slide number
+- Positioning method (coordinates or object name)
+- Content type
+- Position details
+- Content reference
+
+## Examples
+
+### Text Content
+```
+slide_number,position_type,content_type,object_name,left,top,width,height,bg,metric
+1,object_name,text,Title 1,,,,,,Quarterly Performance Report
 ```
 
-**Absolute positioning** (precise control):
-```r
-list(type = "text", value = "Text", left = 1, top = 2, width = 5, height = 1)
+### Graph Content with Coordinate Positioning
+```
+slide_number,position_type,content_type,object_name,left,top,width,height,bg,metric
+1,coordinates,graph,,2,1.5,4.5,4.5,black,graph1
 ```
 
-**Common placeholders**: `"title"`, `"body"`, `"ctrTitle"`, `"subTitle"`
-
-## Content Types
-
-**Text**: `list(type = "text", value = "Hello")`
-**Images**: `list(type = "image", path = "chart.png")`
-**Plots**: `list(type = "plot", plot = my_ggplot)`
-
-## Complete Example
-
-Here's how to create a full presentation with multiple slide types:
-
-```r
-create_demo_presentation <- function() {
-  ppt <- read_pptx()
-  
-  # Load libraries
-  library(ggplot2)
-  
-  # Slide 1: Title slide
-  ppt <- add_custom_slide(
-    ppt,
-    contents = list(
-      create_text_placeholder("PowerPoint Automation Demo", "ctrTitle"),
-      create_text_placeholder("Enhanced officer Package Integration", "subTitle")
-    ),
-    layout = "Title Slide"
-  )
-  
-  # Slide 2: Data visualization
-  gg_plot <- ggplot(mtcars, aes(mpg, wt, color = factor(cyl))) + 
-    geom_point(size = 3) +
-    theme_minimal() +
-    labs(title = "MPG vs Weight by Cylinders")
-  
-  ppt <- add_custom_slide(
-    ppt,
-    contents = list(
-      create_text_placeholder("Data Visualization Examples", "title"),
-      create_text_absolute("Custom positioned note", 0.5, 0.5, 3, 0.5),
-      create_plot_placeholder(gg_plot, "body")
-    ),
-    layout = "Title and Content"
-  )
-  
-  # Slide 3: Absolute positioning demo
-  ppt <- add_custom_slide(
-    ppt,
-    contents = list(
-      create_text_absolute("Absolute Positioning Demo", 1, 0.5, 8, 1),
-      create_text_absolute("Top Left", 0.5, 1.5, 2, 0.5),
-      create_text_absolute("Top Right", 7.5, 1.5, 2, 0.5),
-      create_text_absolute("Bottom Center", 4, 6, 2, 0.5)
-    ),
-    layout = "Blank"
-  )
-  
-  return(ppt)
-}
-
-# Create and save the presentation
-ppt <- create_demo_presentation()
-print(ppt, target = "demo.pptx")
+### Table Content with Coordinate Positioning
+```
+slide_number,position_type,content_type,object_name,left,top,width,height,bg,metric
+2,coordinates,table,,1,1,5,3,white,performance_data
 ```
 
-## More Examples
+## Troubleshooting
 
+### Package Not Found
+If you get errors about missing packages, ensure you've installed all required packages:
 ```r
-source("examples.R")  # Run all example functions
+install.packages(c("officer", "dplyr", "ggplot2", "readr"))
 ```
 
-## Main Function
+### File Not Found
+Ensure all metadata and data files are in the same directory as the R script.
 
-`add_custom_slide(ppt, contents, layout = "Title and Content")`
+### Layout Issues
+Make sure the layout names in `slide_metadata.csv` match those available in your PowerPoint installation.
 
-- `ppt`: PowerPoint object
-- `contents`: List of content items
-- `layout`: Slide layout name
+## License
 
-## Common Layouts
-
-- `"Title Slide"` - For presentation titles
-- `"Title and Content"` - Standard slide
-- `"Blank"` - Custom positioning only
+This project is open source and available under the MIT License.

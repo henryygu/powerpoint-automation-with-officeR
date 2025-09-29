@@ -1,127 +1,113 @@
-# PowerPoint Automation with R
+# PowerPoint Automation with OfficeR
 
-This project automates the creation of PowerPoint presentations using R and metadata files. It allows users to generate professional presentations from structured data without manually creating each slide.
+This project automates the generation of PowerPoint presentations using R and metadata files. It creates professional-looking presentations from structured data without manual copy-pasting.
 
-## Overview
+## How It Works
 
-The system uses three main components:
-1. **Data File** (`data.csv`) - Contains the actual data to be visualized
-2. **Slide Metadata** (`slide_metadata.csv`) - Defines slide layouts and masters
-3. **Content Metadata** (`content_metadata.csv`) - Specifies what content goes on each slide and where
+The system uses three CSV files to control the presentation generation:
+
+1. **slide_metadata.csv** - Defines the structure of slides (layout, master theme)
+2. **content_metadata.csv** - Controls what content goes on each slide and where it's positioned
+3. **data.csv** - Contains the actual data used in charts and tables
 
 ## Files
 
-- `data.csv` - Sample organizational data with metrics, organizations, values, and dates
-- `slide_metadata.csv` - Defines slide layouts and masters
-- `content_metadata.csv` - Specifies content placement on each slide
-- `generate_presentation.R` - R script that creates the PowerPoint presentation
+- `slide_metadata.csv`: Slide structure definitions
+- `content_metadata.csv`: Content placement instructions
+- `data.csv`: Source data for charts and tables
+- `generate_presentation.R`: Core function library for presentation generation
+- `create_presentation.R`: Main script to read CSV files and generate presentation
+- `DATA_DICTIONARY.md`: Documentation of data structures and formats
 
 ## Requirements
 
 - R (version 3.5.0 or higher)
-- R packages:
-  - `officer`
-  - `dplyr`
-  - `ggplot2`
-  - `readr`
+- officer package
+- dplyr package
+- ggplot2 package
+- readr package
 
 ## Installation
 
-1. Install R from [CRAN](https://cran.r-project.org/)
-2. Install required packages:
+Install the required packages:
+
 ```r
 install.packages(c("officer", "dplyr", "ggplot2", "readr"))
 ```
 
 ## Usage
 
-1. Modify the metadata files to define your presentation structure:
-   - Update `slide_metadata.csv` to specify slide layouts
-   - Update `content_metadata.csv` to define content placement
-   - Update `data.csv` with your own data
+Run the main script to generate the presentation:
 
-2. Run the R script:
 ```r
-source("generate_presentation.R")
+source("create_presentation.R")
 ```
 
-3. The generated presentation will be saved as `generated_presentation.pptx`
+This will create a file named `quarterly_report.pptx` in the project directory.
 
 ## Customization
 
-For more advanced usage, you can create your own custom graphs and reference them in the metadata:
+To create your own presentations:
 
-1. Create your graph objects in a separate R script (see `example.R` for examples)
-2. Modify the `create_sample_graphs` function in `generate_presentation.R` to include your custom graphs
-3. Reference your graph objects by name in the `metric` column of `content_metadata.csv`
+1. Modify `data.csv` with your own data
+2. Update `slide_metadata.csv` to change slide layouts
+3. Adjust `content_metadata.csv` to control content placement
+4. Run the script to generate your customized presentation
 
-## Metadata File Structure
+## Project Structure
 
-### Slide Metadata (`slide_metadata.csv`)
-- `slide_number` - Unique identifier for each slide
-- `layout` - PowerPoint slide layout (e.g., "Title and Content", "Two Content")
-- `master` - Slide master theme (e.g., "Office Theme")
+- `generate_presentation.R`: Contains the core `generate_presentation()` function that creates the PowerPoint presentation from data and metadata
+- `create_presentation.R`: Main script that reads CSV files and calls the `generate_presentation()` function
+- This separation allows for easier testing and reuse of the core presentation generation logic
 
-### Content Metadata (`content_metadata.csv`)
-- `slide_number` - Reference to the slide
-- `position_type` - Either "coordinates" or "object_name"
-- `content_type` - Type of content ("text", "graph", or "table")
-- `object_name` - Placeholder name when using object positioning
-- `left`, `top`, `width`, `height` - Position coordinates (inches) when using coordinate positioning
-- `bg` - Background color
-- `metric` - Reference to data or text content
+## Metadata File Formats
 
-## Customization
+### slide_metadata.csv
+- `slide_number`: Sequential slide identifier
+- `layout`: PowerPoint layout name (e.g., "Title and Content")
+- `master`: Master theme to use
 
-### Adding New Slides
-1. Add new rows to `slide_metadata.csv` with the slide number, layout, and master
-2. Add corresponding content rows to `content_metadata.csv`
+### content_metadata.csv
+- `slide_number`: Which slide this content belongs to
+- `position_type`: How to position content ("coordinates", "placeholder_type", "placeholder_name")
+- `content_type`: Type of content ("text", "graph", "table")
+- `placeholder_name`: Name of the placeholder to use (e.g., "Content Placeholder 1", "Title 1")
+- `geom_type`: Type of ggplot geom to use ("geom_bar", "geom_line", "geom_point")
+- `x_var`: Variable to use for x-axis (e.g., "Organization", "Date")
+- `y_var`: Variable to use for y-axis (e.g., "Value")
+- `fill_var`: Variable to use for fill/color grouping (e.g., "Organization")
+- `left`, `top`, `width`, `height`: Position coordinates in inches (when position_type="coordinates")
+- `metric`: Data metric to display (must match Metric column in data.csv)
 
-### Changing Layouts
-Modify the `layout` column in `slide_metadata.csv` to use different PowerPoint layouts
-
-### Adding Content
-Add new rows to `content_metadata.csv` specifying:
-- Slide number
-- Positioning method (coordinates or object name)
-- Content type
-- Position details
-- Content reference
-
-## Examples
-
-### Text Content
-```
-slide_number,position_type,content_type,object_name,left,top,width,height,bg,metric
-1,object_name,text,Title 1,,,,,,Quarterly Performance Report
-```
-
-### Graph Content with Coordinate Positioning
-```
-slide_number,position_type,content_type,object_name,left,top,width,height,bg,metric
-1,coordinates,graph,,2,1.5,4.5,4.5,black,graph1
-```
-
-### Table Content with Coordinate Positioning
-```
-slide_number,position_type,content_type,object_name,left,top,width,height,bg,metric
-2,coordinates,table,,1,1,5,3,white,performance_data
-```
+### data.csv
+- `Metric`: Name of the metric
+- `Organization`: Category/organization name
+- `Value`: Numeric value
+- `Date`: Date of measurement
 
 ## Troubleshooting
 
-### Package Not Found
-If you get errors about missing packages, ensure you've installed all required packages:
-```r
-install.packages(c("officer", "dplyr", "ggplot2", "readr"))
-```
+### PowerPoint says the file needs repair
 
-### File Not Found
-Ensure all metadata and data files are in the same directory as the R script.
+If PowerPoint indicates that the generated file needs repair, try these solutions:
 
-### Layout Issues
-Make sure the layout names in `slide_metadata.csv` match those available in your PowerPoint installation.
+1. Make sure all required R packages are up to date:
+   ```r
+   install.packages(c("officer", "dplyr", "ggplot2", "readr"))
+   ```
 
-## License
+2. Check that your CSV files are properly formatted with no missing values in required columns.
 
-This project is open source and available under the MIT License.
+3. Ensure you're using a recent version of PowerPoint that supports the .pptx format.
+
+4. Try opening the file in a different version of PowerPoint or on a different computer.
+
+5. If issues persist, check the R console for any error messages during script execution.
+
+### Error: "Found no placeholder of type..." or "Found no placeholder with label..."
+
+This error occurs when the script tries to place content in a placeholder that doesn't exist in the slide layout. Make sure:
+
+1. The layout names in `slide_metadata.csv` match exactly with PowerPoint layout names.
+2. The placeholder names used in the `content_metadata.csv` file match what's available in each layout.
+3. Refer to `DATA_DICTIONARY.md` for information about available placeholder names for each layout.

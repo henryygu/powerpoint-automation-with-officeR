@@ -1,78 +1,50 @@
 # Data Dictionary
 
-This document describes the structure and meaning of the data and metadata files used in the PowerPoint automation system.
+## slide_metadata.csv
 
-## Data File (data.csv)
+| Column | Description | Data Type | Example |
+|--------|-------------|-----------|---------|
+| slide_number | Sequential slide identifier | Integer | 1 |
+| layout | PowerPoint layout name | String | "Title and Content" |
+| master | Master theme to use | String | "Office Theme" |
 
-Contains the actual data to be visualized in the presentation.
+## content_metadata.csv
 
-### Columns
+| Column | Description | Data Type | Example |
+|--------|-------------|-----------|---------|
+| slide_number | Which slide this content belongs to | Integer | 1 |
+| position_type | How to position content | String | "coordinates", "placeholder_type", "placeholder_name" |
+| content_type | Type of content | String | "text", "graph", "table" |
+| placeholder_name | Name of the placeholder to use (e.g., "Content Placeholder 1", "Title 1") | String | "Content Placeholder 1" |
+| geom_type | Type of ggplot geom to use | String | "geom_bar", "geom_line", "geom_point" |
+| x_var | Variable to use for x-axis | String | "Organization", "Date" |
+| y_var | Variable to use for y-axis | String | "Value" |
+| fill_var | Variable to use for fill/color grouping | String | "Organization" |
+| left | Left position in inches (when position_type="coordinates") | Numeric | 2.0 |
+| top | Top position in inches (when position_type="coordinates") | Numeric | 1.5 |
+| width | Width in inches (when position_type="coordinates") | Numeric | 4.5 |
+| height | Height in inches (when position_type="coordinates") | Numeric | 4.5 |
+| bg | Background color (reserved for future use) | String | "black" |
+| metric | Data metric to display (must match Metric column in data.csv) | String | "Revenue" |
 
-| Column | Type | Description | Example |
-|--------|------|-------------|---------|
-| Metric | String | The type of measurement | "Revenue", "Profit Margin" |
-| Organization | String | The company or entity | "Acme Corp", "Globex Inc" |
-| Value | Number | The measured value | 1250000, 0.24 |
-| Date | Date | When the measurement was taken | "2025-01-31" |
+## data.csv
 
-## Slide Metadata (slide_metadata.csv)
+| Column | Description | Data Type | Example |
+|--------|-------------|-----------|---------|
+| Metric | Name of the metric | String | "Revenue" |
+| Organization | Category/organization name | String | "Acme Corp" |
+| Value | Numeric value | Numeric | 1250000 |
+| Date | Date of measurement | Date | "2025-01-31" |
 
-Defines the overall structure of slides in the presentation.
+## Layout Types and Placeholder Information
 
-### Columns
+### Title Slide
+- Available placeholder types: "ctrTitle" (main title), "subTitle" (subtitle), "dt" (date), "ftr" (footer), "sldNum" (slide number)
 
-| Column | Type | Description | Example |
-|--------|------|-------------|---------|
-| slide_number | Integer | Unique identifier for each slide | 1, 2, 3 |
-| layout | String | PowerPoint slide layout | "Title and Content", "Two Content" |
-| master | String | Slide master theme | "Office Theme" |
+### Title and Content
+- Available placeholder types: "title" (slide title), "body" (content area)
+- Available placeholder names: "Content Placeholder 1", "Title 1"
 
-## Content Metadata (content_metadata.csv)
-
-Specifies what content goes on each slide and where it should be positioned.
-
-### Columns
-
-| Column | Type | Description | Example |
-|--------|------|-------------|---------|
-| slide_number | Integer | Reference to the slide | 1, 2, 3 |
-| position_type | String | Positioning method | "coordinates", "object_name" |
-| content_type | String | Type of content | "text", "graph", "table" |
-| object_name | String | Placeholder name (when using object positioning) | "Title 1", "Content 2" |
-| left | Number | Horizontal position in inches (when using coordinate positioning) | 2, 1.5 |
-| top | Number | Vertical position in inches (when using coordinate positioning) | 1.5, 1 |
-| width | Number | Width in inches (when using coordinate positioning) | 4.5, 5 |
-| height | Number | Height in inches (when using coordinate positioning) | 4.5, 3 |
-| bg | String | Background color (when using coordinate positioning) | "black", "white" |
-| metric | String | Reference to data or text content | "graph1", "Quarterly Performance Report" |
-
-## Content Types
-
-### Text
-Plain text content, typically used for titles and labels.
-
-### Graph
-Data visualizations created with ggplot2. The metric column references the graph object that should be created separately.
-
-### Table
-Tabular data displays. The metric column references the data subset to be displayed.
-
-## Positioning Methods
-
-### Object Name
-Uses predefined placeholders in the PowerPoint template. Common object names include:
-- "Title 1" - Main slide title
-- "Content 1" - First content area
-- "Content 2" - Second content area
-
-### Coordinates
-Explicit positioning using left, top, width, and height values in inches. This method provides precise control over element placement.
-
-## Metric References
-
-In the content metadata, the metric column can reference:
-1. Text strings for text content types
-2. Graph objects (e.g., "graph1", "graph2") for graph content types
-3. Data subsets (e.g., "performance_data", "q1_data") for table content types
-
-When creating custom presentations, ensure that any metric references have corresponding objects or data subsets defined in your R code.
+### Two Content
+- Available placeholder types: "title" (slide title), "body" (left content), "other" (right content)
+- Available placeholder names: "Content Placeholder 1", "Content Placeholder 2", "Title 1"

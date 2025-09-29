@@ -1,20 +1,20 @@
-slide_number,position_type,content_type,object_name,left,top,width,height,bg,metric
-1,object_name,text,Title 1,,,,,,Quarterly Performance Report
-1,coordinates,graph,,2,1.5,4.5,4.5,black,graph1
-2,object_name,text,Title 2,,,,,,Revenue Analysis by Organization
-2,coordinates,table,,1,1,5,3,white,performance_data
-3,object_name,text,Title 3,,,,,,Profit Margin and Customer Satisfaction Comparison
-3,coordinates,graph,,0.5,1.5,4,4,white,graph2
-3,coordinates,graph,,5,1.5,4,4,white,graph3
-4,object_name,text,Title 4,,,,,,Market Share Analysis
-4,coordinates,table,,2,2,5,3,white,org_metrics
-5,object_name,text,Title 5,,,,,,Q1 Performance Summary
-5,coordinates,graph,,1,1.5,3.5,3.5,white,graph4
-5,coordinates,table,,5.5,1.5,3.5,3.5,white,q1_data
-6,object_name,text,Title 6,,,,,,Revenue Trends Across Q1
-6,coordinates,graph,,1.5,1,6,4,white,graph5
-7,object_name,text,Title 7,,,,,,Organizational Performance Dashboard
-7,coordinates,table,,1,1.5,4,3,white,org_comparison
-7,coordinates,graph,,5.5,1.5,3.5,3,white,graph6
-8,object_name,text,Title 8,,,,,,Executive Summary and Key Insights
-8,coordinates,graph,,2,1.5,5,4,white,graph7
+slide_number,position_type,content_type,placeholder_name,geom_type,x_var,y_var,fill_var,left,top,width,height,bg,metric
+1,placeholder_type,text,ctrTitle,,,,,,,,,,Quarterly Performance Report
+1,placeholder_type,text,subTitle,,,,,,,,,,29th September  2025
+2,placeholder_type,text,title,,,,,,,,,,Revenue Analysis by Organization
+2,placeholder_name,table,Content Placeholder 2,,,,,,,,,,Revenue
+3,placeholder_type,text,title,,,,,,,,,,Profit Margin and Customer Satisfaction Comparison
+3,placeholder_name,graph,Content Placeholder 2,geom_bar,Organization,Value,Organization,,,,,,Profit Margin
+3,placeholder_name,graph,Content Placeholder 3,geom_bar,Organization,Value,Organization,,,,,,Customer Satisfaction
+4,placeholder_type,text,title,,,,,,,,,,Market Share Analysis
+4,placeholder_name,table,Content Placeholder 2,,,,,,,,,,Market Share
+5,placeholder_type,text,title,,,,,,,,,,Q1 Performance Summary
+5,placeholder_name,graph,Content Placeholder 2,geom_line,Date,Value,Organization,,,,,,Revenue
+5,placeholder_name,table,Content Placeholder 3,,,,,,,,,,Profit Margin
+6,placeholder_type,text,title,,,,,,,,,,Revenue Trends Across Q1
+6,placeholder_name,graph,Content Placeholder 2,geom_line,Date,Value,Organization,,,,,,Revenue
+7,placeholder_type,text,title,,,,,,,,,,Organizational Performance Dashboard
+7,placeholder_name,table,Content Placeholder 2,,,,,,,,,,Revenue
+7,placeholder_name,graph,Content Placeholder 3,geom_bar,Organization,Value,Organization,,,,,,Profit Margin
+8,placeholder_type,text,title,,,,,,,,,,Executive Summary and Key Insights
+8,placeholder_name,graph,Content Placeholder 2,geom_bar,Organization,Value,Organization,,,,,,Customer Satisfaction

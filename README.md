@@ -70,20 +70,57 @@ To create your own presentations:
 ### content_metadata.csv
 - `slide_number`: Which slide this content belongs to
 - `position_type`: How to position content ("coordinates", "placeholder_type", "placeholder_name")
-- `content_type`: Type of content ("text", "graph", "table")
+- `content_type`: Type of content ("text", "graph", "table", "custom")
 - `placeholder_name`: Name of the placeholder to use (e.g., "Content Placeholder 1", "Title 1")
 - `geom_type`: Type of ggplot geom to use ("geom_bar", "geom_line", "geom_point")
 - `x_var`: Variable to use for x-axis (e.g., "Organization", "Date")
 - `y_var`: Variable to use for y-axis (e.g., "Value")
 - `fill_var`: Variable to use for fill/color grouping (e.g., "Organization")
 - `left`, `top`, `width`, `height`: Position coordinates in inches (when position_type="coordinates")
-- `metric`: Data metric to display (must match Metric column in data.csv)
+- `metric`: Data metric to display (must match Metric column in data.csv) or name of custom object
 
 ### data.csv
 - `Metric`: Name of the metric
 - `Organization`: Category/organization name
 - `Value`: Numeric value
 - `Date`: Date of measurement
+
+## Custom Content Types
+
+You can now include custom R objects (such as user-defined ggplot objects) in your presentations by setting `content_type` to "custom" in the content_metadata.csv file. When using this content type, the `metric` column should contain the name of a user-defined R object that has been created in the global environment.
+
+When `content_type = "custom"`, the `metric` field refers to a user-defined object, defined like:
+```r
+graph1 <- ggplot(data, aes(x=Date, y=Value, color=Organization)) + 
+          geom_line() + 
+          theme_minimal()
+```
+
+Example usage in content_metadata.csv:
+```csv
+slide_number,position_type,content_type,placeholder_name,metric
+1,placeholder_name,custom,Content Placeholder 2,graph1
+```
+
+To use custom objects:
+
+1. Create your custom ggplot objects in your R script
+2. Set `content_type` to "custom" in your content_metadata.csv
+3. Set the `metric` column to the name of your custom object
+4. Run the presentation generation script
+
+Example:
+```r
+# Define a custom ggplot object in your R script
+graph1 <- ggplot(data, aes(x=Date, y=Value, color=Organization)) + 
+          geom_line() + 
+          theme_minimal() +
+          labs(title = "Revenue Trends")
+
+# In content_metadata.csv:
+# slide_number,position_type,content_type,placeholder_name,metric
+# 1,placeholder_name,custom,Content Placeholder 1,graph1
+```
 
 ## Troubleshooting
 

@@ -18,3 +18,5 @@ slide_number,position_type,content_type,placeholder_name,geom_type,x_var,y_var,f
 7,placeholder_name,graph,Content Placeholder 3,geom_bar,Organization,Value,Organization,,,,,,Profit Margin
 8,placeholder_type,text,title,,,,,,,,,,Executive Summary and Key Insights
 8,placeholder_name,graph,Content Placeholder 2,geom_bar,Organization,Value,Organization,,,,,,Customer Satisfaction
+9,placeholder_type,text,title,,,,,,,,,,Custom Analysis Example
+9,placeholder_name,custom,Content Placeholder 2,,,,,,,,,,graph1

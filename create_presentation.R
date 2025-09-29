@@ -12,6 +12,15 @@ data <- read.csv("data.csv", stringsAsFactors = FALSE)
 # Convert Date column to Date type
 data$Date <- as.Date(data$Date)
 
+# Define custom objects (example)
+# When content_type = "custom" in content_metadata.csv, the metric column refers to these user-defined objects
+# Uncomment and modify the following lines to create custom ggplot objects
+graph1 <- ggplot(data[data$Metric == "Revenue", ], aes(x = Date, y = Value, color = Organization)) +
+  geom_line() +
+  geom_point() +
+  theme_minimal() +
+  labs(title = "Custom Revenue Trend Analysis", x = "Date", y = "Revenue ($)")
+
 # Generate the presentation
 presentation <- generate_presentation(slide_metadata, content_metadata, data)
 

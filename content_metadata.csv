@@ -1,22 +1,23 @@
-slide_number,position_type,content_type,placeholder_name,geom_type,x_var,y_var,fill_var,left,top,width,height,bg,metric
-1,placeholder_type,text,ctrTitle,,,,,,,,,,Quarterly Performance Report
-1,placeholder_type,text,subTitle,,,,,,,,,,29th September  2025
-2,placeholder_type,text,title,,,,,,,,,,Revenue Analysis by Organization
-2,placeholder_name,table,Content Placeholder 2,,,,,,,,,,Revenue
-3,placeholder_type,text,title,,,,,,,,,,Profit Margin and Customer Satisfaction Comparison
-3,placeholder_name,graph,Content Placeholder 2,geom_bar,Organization,Value,Organization,,,,,,Profit Margin
-3,placeholder_name,graph,Content Placeholder 3,geom_bar,Organization,Value,Organization,,,,,,Customer Satisfaction
-4,placeholder_type,text,title,,,,,,,,,,Market Share Analysis
-4,placeholder_name,table,Content Placeholder 2,,,,,,,,,,Market Share
-5,placeholder_type,text,title,,,,,,,,,,Q1 Performance Summary
-5,placeholder_name,graph,Content Placeholder 2,geom_line,Date,Value,Organization,,,,,,Revenue
-5,placeholder_name,table,Content Placeholder 3,,,,,,,,,,Profit Margin
-6,placeholder_type,text,title,,,,,,,,,,Revenue Trends Across Q1
-6,placeholder_name,graph,Content Placeholder 2,geom_line,Date,Value,Organization,,,,,,Revenue
-7,placeholder_type,text,title,,,,,,,,,,Organizational Performance Dashboard
-7,placeholder_name,table,Content Placeholder 2,,,,,,,,,,Revenue
-7,placeholder_name,graph,Content Placeholder 3,geom_bar,Organization,Value,Organization,,,,,,Profit Margin
-8,placeholder_type,text,title,,,,,,,,,,Executive Summary and Key Insights
-8,placeholder_name,graph,Content Placeholder 2,geom_bar,Organization,Value,Organization,,,,,,Customer Satisfaction
-9,placeholder_type,text,title,,,,,,,,,,Custom Analysis Example
-9,placeholder_name,custom,Content Placeholder 2,,,,,,,,,,graph1
+slide_number,slide_master,slide_layout,position_type,content_type,placeholder_name,geom_type,x_var,y_var,fill_var,metric,left,top,width,height,rotation,bg,font_size,font_color,text_align
+1,Office Theme,Title Slide,placeholder_type,text,ctrTitle,,,,Quarterly Performance Report,,,,,,,,,,
+1,Office Theme,Title Slide,placeholder_type,text,subTitle,,,,29th September 2025,,,,,,,,,,
+2,Office Theme,Title and Content,placeholder_type,text,title,,,,Revenue Analysis by Organization,,,,,,,,,,
+2,Office Theme,Title and Content,placeholder_name,table,Content Placeholder 2,,,,Revenue,,,,,,,,,,
+3,Office Theme,Two Content,placeholder_type,text,title,,,,Profit Margin and Customer Satisfaction Comparison,,,,,,,,,,
+3,Office Theme,Two Content,placeholder_name,mschart_bar,Content Placeholder 2,geom_bar,Organization,Value,Organization,Profit Margin,,,,,,,,,,
+3,Office Theme,Two Content,placeholder_name,mschart_bar,Content Placeholder 3,geom_bar,Organization,Value,Organization,Customer Satisfaction,,,,,,,,,,
+4,Office Theme,Title and Content,placeholder_type,text,title,,,,Market Share Analysis,,,,,,,,,,
+4,Office Theme,Title and Content,placeholder_name,table,Content Placeholder 2,,,,Market Share,,,,,,,,,,
+5,Office Theme,Two Content,placeholder_type,text,title,,,,Q1 Performance Summary,,,,,,,,,,
+5,Office Theme,Two Content,placeholder_name,mschart_line,Content Placeholder 2,geom_line,Date,Value,Organization,Revenue,,,,,,,,,,
+5,Office Theme,Two Content,placeholder_name,table,Content Placeholder 3,,,,Profit Margin,,,,,,,,,,
+6,Office Theme,Title and Content,placeholder_type,text,title,,,,Revenue Trends Across Q1,,,,,,,,,,
+6,Office Theme,Title and Content,placeholder_name,mschart_line,Content Placeholder 2,geom_line,Date,Value,Organization,Revenue,,,,,,,,,,
+7,Office Theme,Two Content,placeholder_type,text,title,,,,Organizational Performance Dashboard,,,,,,,,,,
+7,Office Theme,Two Content,placeholder_name,table,Content Placeholder 2,,,,Revenue,,,,,,,,,,
+7,Office Theme,Two Content,placeholder_name,mschart_bar,Content Placeholder 3,geom_bar,Organization,Value,Organization,Profit Margin,,,,,,,,,,
+8,Office Theme,Title and Content,placeholder_type,text,title,,,,Executive Summary and Key Insights,,,,,,,,,,
+8,Office Theme,Title and Content,placeholder_name,mschart_bar,Content Placeholder 2,geom_bar,Organization,Value,Organization,Customer Satisfaction,,,,,,,,,,
+9,Office Theme,Title and Content,placeholder_type,text,title,,,,Custom Analysis Example,,,,,,,,,,
+9,Office Theme,Title and Content,placeholder_name,custom,Content Placeholder 2,,,,graph1,,,,,,,,,,
+10,Office Theme,Title Only,coordinates,text,,,,,Bullet Points Example|Item 1|Item 2|Item 3,1,2,5,3,0,,18,black,left
